@@ -1,4 +1,5 @@
 let createStore = require('redux').createStore
+let combineReducers = require('redux').combineReducers
 
 function addToCart(productId) {
   return {
@@ -72,6 +73,10 @@ function reducer(state={}, action) {
     shoppingCart: shoppingCart(state.shoppingCart, action) 
   }
 }
+
+let reducer = combineReducers({
+  products, activeCategory, shoppingCart
+})
 
 let store = createStore(reducer)
 store.dispatch(addToCart(4))
