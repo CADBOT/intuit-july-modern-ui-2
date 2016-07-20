@@ -1,3 +1,5 @@
+let createStore = require('redux').createStore
+
 function addToCart(productId) {
   return {
     type: 'ADD_TO_CART',
@@ -29,7 +31,7 @@ initialState = {
   activeCategory: 'sports',
   shoppingCart: []
 }
-function shoppingCart(state=[], action={type: null}) {
+function shoppingCart(state=[], action) {
   switch (action.type) {
     case 'ADD_TO_CART':
       return [...state, action.productId]
@@ -40,7 +42,7 @@ function shoppingCart(state=[], action={type: null}) {
   }
 }
 
-function activeCategory(state='sports', action={type: null}) {
+function activeCategory(state='sports', action) {
   switch (action.type) {
     case 'CHANGE_CATEGORY': 
       return action.category
@@ -63,15 +65,20 @@ function products(state=productInitialState, action) {
   }
 }
 
-function reducer(state={}, action={type: null}) {
+function reducer(state={}, action) {
   return {
-    products: products(state.prodcuts, action)
+    products: products(state.prodcuts, action),
     activeCategory: activeCategory(state.activeCategory, action),
     shoppingCart: shoppingCart(state.shoppingCart, action) 
   }
 }
 
-function reducer(state=initialState, action={type: null}) {
+let store = createStore(reducer)
+store.dispatch(addToCart(4))
+console.log(store.getState())
+
+/*
+function reducer(state={}, action={type: null}) {
   switch (action.type) {
     case 'ADD_TO_CART':
       return Object.assign({}, state, {
@@ -90,6 +97,7 @@ function reducer(state=initialState, action={type: null}) {
       return state
   }
 }
+*/
 
 /*
 function reducer(state=initialState, action={type: null}) {
@@ -113,5 +121,3 @@ function reducer(state=initialState, action={type: null}) {
 }
 */
 
-var state = reducer()
-state = reducer(state, addToCart(4))
