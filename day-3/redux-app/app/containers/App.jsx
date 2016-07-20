@@ -3,6 +3,10 @@ import Products from './Products.jsx'
 
 export default class App extends Component {
   render() {
-    <Products/>
+    return (
+      <div>
+        <Products/>
+      </div>
+    )
   }
 }

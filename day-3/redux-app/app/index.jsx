@@ -4,7 +4,6 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducer from './reducers'
 import {addToCart} from './actions'
-import Product from './containers/Product.jsx'
 
 import App from './containers/App.jsx'
 let store = createStore(reducer)
